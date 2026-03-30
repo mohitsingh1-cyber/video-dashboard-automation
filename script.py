@@ -51,6 +51,8 @@ def get_video_count(url, username, password):
             return 0
 
 # -------- FETCH DATA --------
+cms_count = get_cms_video_count()
+msn_count = get_msn_video_count()
 try:
     cms_count = get_cms_video_count()
 except:

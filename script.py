@@ -22,7 +22,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 client = gspread.authorize(creds)
 sheet = client.open(SHEET_NAME).sheet1
 
-today = datetime.now().strftime("%Y-%m-%d")
+date_for_entry = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
 # -------- SCRAPER FUNCTION --------
 def get_video_count(url, username, password):

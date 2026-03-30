@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timedelta
+date_for_entry = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
 # -------- CONFIG --------
 CMS_URL = "https://denmark.timesinternet.in/reporting/cms-analytics/"
@@ -21,8 +22,8 @@ scope = ["https://spreadsheets.google.com/feeds",
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 client = gspread.authorize(creds)
 sheet = client.open(SHEET_NAME).sheet1
-
-date_for_entry = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+if date_for_entry not in existing_dates:
+    sheet.append_row([date_for_entry, cms_count, msn_count, total, ""])
 
 # -------- SCRAPER FUNCTION --------
 def get_video_count(url, username, password):

@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # -------- CONFIG --------
 CMS_URL = "https://denmark.timesinternet.in/reporting/cms-analytics/"

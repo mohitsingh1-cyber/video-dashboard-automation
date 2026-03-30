@@ -51,19 +51,31 @@ def get_video_count(url, username, password):
             return 0
 
 # -------- FETCH DATA --------
-cms_count = get_cms_video_count()
-msn_count = get_msn_video_count()
-try:
-    cms_count = get_cms_video_count()
-except:
-    cms_count = 0
+def get_cms_video_count():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
 
-try:
-    msn_count = get_msn_video_count()
-except:
-    msn_count = 0
+        page.goto(CMS_URL)
 
-total = cms_count + msn_count
+        page.fill('input[name="username"]', CMS_USER)
+        page.fill('input[name="password"]', CMS_PASS)
+        page.click('button[type="submit"]')
+
+        page.wait_for_load_state("networkidle")
+        page.wait_for_selector("text=Media Video", timeout=60000)
+
+        elements = page.query_selector_all("div")
+
+        for el in elements:
+            text = el.inner_text()
+            if "Media Video" in text:
+                import re
+                numbers = re.findall(r'\d+', text)
+                if numbers:
+                    return int(numbers[0])
+
+        return 0
 
 # -------- AVOID DUPLICATES --------
 existing_dates = sheet.col_values(1)

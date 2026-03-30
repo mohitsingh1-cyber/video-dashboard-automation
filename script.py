@@ -76,15 +76,36 @@ def get_cms_video_count():
                     return int(numbers[0])
 
         return 0
-elements = page.query_selector_all("div")
+def get_msn_video_count():
+    from playwright.sync_api import sync_playwright
+    import re
 
-for el in elements:
-    text = el.inner_text()
-    if "Video" in text or "Videos" in text:
-        import re
-        numbers = re.findall(r'\d+', text)
-        if numbers:
-            return int(numbers[0])
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        page.goto(MSN_URL)
+
+        # Login (update if needed)
+        page.fill('input[type="email"]', MSN_USER)
+        page.fill('input[type="password"]', MSN_PASS)
+        page.click('button[type="submit"]')
+
+        page.wait_for_load_state("networkidle")
+        page.wait_for_timeout(8000)
+
+        elements = page.query_selector_all("div")
+
+        for el in elements:
+            text = el.inner_text()
+            if "Video" in text or "Videos" in text:
+                numbers = re.findall(r'\d+', text)
+                if numbers:
+                    browser.close()
+                    return int(numbers[0])
+
+        browser.close()
+        return 0
 # -------- AVOID DUPLICATES --------
 existing_dates = sheet.col_values(1)
 

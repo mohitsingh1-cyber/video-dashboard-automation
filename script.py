@@ -76,7 +76,15 @@ def get_cms_video_count():
                     return int(numbers[0])
 
         return 0
+elements = page.query_selector_all("div")
 
+for el in elements:
+    text = el.inner_text()
+    if "Video" in text or "Videos" in text:
+        import re
+        numbers = re.findall(r'\d+', text)
+        if numbers:
+            return int(numbers[0])
 # -------- AVOID DUPLICATES --------
 existing_dates = sheet.col_values(1)
 

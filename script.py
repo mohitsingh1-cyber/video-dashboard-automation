@@ -4,13 +4,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
 # -------- CONFIG --------
-CMS_URL = "YOUR_CMS_URL"
-CMS_USER = "YOUR_USERNAME"
-CMS_PASS = "YOUR_PASSWORD"
+CMS_URL = "https://denmark.timesinternet.in/reporting/cms-analytics/"
+CMS_USER = "mohit.singh1@timesinternet.in"
+CMS_PASS = "sambhavya#navya1201"
 
-MSN_URL = "YOUR_MSN_URL"
-MSN_USER = "YOUR_USERNAME"
-MSN_PASS = "YOUR_PASSWORD"
+MSN_URL = "https://www.msn.com/en-in/partnerhub/login?partner_type=c2s&rurl=%2Fen-in%2Fpartnerhub%2F"
+MSN_USER = "mohit.singh1@timesinternet.in"
+MSN_PASS = "sambhavya#navya1201"
 
 SHEET_NAME = "Video Dashboard"
 

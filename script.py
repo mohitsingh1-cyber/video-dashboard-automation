@@ -41,7 +41,7 @@ def get_video_count(url, username, password):
 
         # ---- EXTRACT VIDEO COUNT ----
         # Replace selector based on your dashboard
-        count_text = page.inner_text("YOUR_VIDEO_COUNT_SELECTOR")
+        count_text = page.inner_text("media video")
 
         browser.close()
 

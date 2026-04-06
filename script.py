@@ -8,11 +8,11 @@ import re
 date_for_entry = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
 # -------- CONFIG --------
-CMS_URL = "https://denmark.timesinternet.in/reporting/cms-analytics/"
+CMS_URL = "https://denmark.timesinternet.in/reporting/cms-analytics/#/reporting/cms-analytics/sections"
 CMS_USER = "mohit.singh1@timesinternet.in"
 CMS_PASS = "sambhavya#navya1201"
 
-MSN_URL = "https://www.msn.com/en-in/partnerhub/login?partner_type=c2s&rurl=%2Fen-in%2Fpartnerhub%2F"
+MSN_URL = "https://www.msn.com/en-in/partnerhub/analytics/content/overview"
 MSN_USER = "mohit.singh1@timesinternet.in"
 MSN_PASS = "sambhavya#navya1201"
 
